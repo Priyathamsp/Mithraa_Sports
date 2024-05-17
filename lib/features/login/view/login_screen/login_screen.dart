@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: EdgeInsets.only(left: 20.0.w),
                           child: Text(
-                            "Student ID",
+                            "Email ID",
                             style: TextStyle(
                               fontSize: 14.sp,
                               color: AppColor.blackTextColor,
@@ -73,6 +73,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontSize: 10.sp,
                             ),
                             decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.email_outlined,
+                                  color: AppColor.greyColor,
+                                ),
                               // Add border properties here
                               border: OutlineInputBorder(
                                 // Customize border properties here
@@ -84,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     8..r), // Border radius
                               ),
                               // Optionally, add placeholder text
-                              hintText: 'Enter your Student Id',
+                              hintText: 'Enter your Email Id',
                             ),
                           ),
                         ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../configs/styles/app_colors.dart';
-
+import 'package:mithraa_sports/core/config/styles/app_colors.dart';
 class CustomTextField extends StatefulWidget {
   final String? Function(String?)? validateInput;
   final String? hintText;

@@ -1,9 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:mithraa_sports/core/config/styles/app_colors.dart';
 
-import '../../../core/utils/shared/constants/assets_pathes.dart';
+import '../../history/view/history.dart';
+import '../../home_screen/view/home_screen.dart';
 
 class PracticeScreen2 extends StatefulWidget {
   const PracticeScreen2({super.key});
@@ -13,6 +18,45 @@ class PracticeScreen2 extends StatefulWidget {
 }
 
 class _PracticeScreen2State extends State<PracticeScreen2> {
+  late Timer _timer;
+  int _start = 15;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+          (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
+  }
+
+  String get timerText {
+    int hours = _start ~/ 3600;
+    int minutes = (_start % 3600) ~/ 60;
+    int seconds = _start % 60;
+
+    String hoursStr = (hours % 24).toString().padLeft(2, '0');
+    String minutesStr = minutes.toString().padLeft(2, '0');
+    String secondsStr = seconds.toString().padLeft(2, '0');
+
+    return '$hoursStr:$minutesStr:$secondsStr';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,42 +83,56 @@ class _PracticeScreen2State extends State<PracticeScreen2> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Icon(
-                          Icons.menu,
-                          size: 20.sp,
+                      SizedBox(
+                        width: Get.width * 0.10,
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(HomeScreen(),
+                                transition: Transition.leftToRightWithFade);
+                          },
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            size: 20.sp,
+                            color: AppColor.headingColor,
+                          ),
                         ),
                       ),
                       SizedBox(
-                        width: 30.w,
+                        width: Get.width * 0.05,
                       ),
-                      Text(
-                        "Practice",
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          color: AppColor.headingColor,
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            "Practice",
+                            style: TextStyle(
+                                fontSize: 16.sp, color: AppColor.headingColor),
+                          ),
                         ),
                       ),
                       SizedBox(
-                        width: 30.w,
+                        width: Get.width * 0.15,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          children: [
-                            Icon(
-                              Icons.history,
-                              color: AppColor.headingColor,
-                              size: 20.sp,
-                            ),
-                            Text(
-                              "History",
-                              style: TextStyle(
-                                  fontSize: 8.sp,
-                                  color: AppColor.blackTextColor),
-                            )
-                          ],
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(History());
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.history,
+                                color: AppColor.headingColor,
+                                size: 20.sp,
+                              ),
+                              Text(
+                                "History",
+                                style: TextStyle(
+                                    fontSize: 8.sp,
+                                    color: AppColor.blackTextColor),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -130,12 +188,14 @@ class _PracticeScreen2State extends State<PracticeScreen2> {
                     ),
                     Column(
                       children: [
-                        Text("00:00:15", style: TextStyle(
-                            fontSize: 20.sp, color: Colors.redAccent
-                        ),),
-                        Text("Click to start the game", style: TextStyle(
-                            fontSize: 8.sp, color: AppColor.darkGreyColor
-                        ),),
+                        Text(
+                          timerText,
+                          style: TextStyle(fontSize: 20.sp, color: Colors.red),
+                        ),
+                        Text(
+                          "Click to start the game",
+                          style: TextStyle(fontSize: 8.sp, color: AppColor.darkGreyColor),
+                        ),
                         SizedBox(
                           height: 15.h,
                         ),
@@ -245,4 +305,12 @@ class _PracticeScreen2State extends State<PracticeScreen2> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _timer.cancel(); // Cancel timer to avoid memory leaks
+    super.dispose();
+  }
 }
+
+

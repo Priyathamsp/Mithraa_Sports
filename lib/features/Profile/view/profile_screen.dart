@@ -1,20 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:mithraa_sports/core/utils/shared/constants/assets_pathes.dart';
 
 import '../../../core/config/styles/app_colors.dart';
 import '../../../core/utils/shared/components/widgets/bottom_navigation_bar.dart';
 import '../../home_screen/view/home_screen.dart';
 
-class Analytics extends StatefulWidget {
-  const Analytics({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  State<Analytics> createState() => _AnalyticsState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _AnalyticsState extends State<Analytics> {
+class _ProfileScreenState extends State<ProfileScreen> {
   int _currentIndex = 0;
 
   void _onItemTapped(int index) {
@@ -68,7 +70,7 @@ class _AnalyticsState extends State<Analytics> {
                       Expanded(
                         child: Center(
                           child: Text(
-                            "Analytics",
+                            "Profile",
                             style: TextStyle(
                                 fontSize: 16.sp, color: AppColor.headingColor),
                           ),
@@ -79,6 +81,101 @@ class _AnalyticsState extends State<Analytics> {
                       ),
                     ],
                   ),
+                ),
+                Stack(
+                  children: [
+                    Container(
+                      width: 280.w,
+                      height: 150.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15.r), // Adjust as needed
+                          bottomRight:
+                              Radius.circular(15.r), // Adjust as needed
+                        ),
+                        color: AppColor.lightBlueColor,
+                      ),
+                    ),
+                    Positioned(
+                      left: 150,
+                      top: 20,
+                      child: Container(
+                        width: 60.w,
+                        height: 60.h,
+                        decoration: BoxDecoration(
+                            color: AppColor.lightBlueColor,
+                            borderRadius: BorderRadius.circular(90.r),
+                            border: Border.all(
+                                color: AppColor.blueColor, width: 1)),
+                      ),
+                    ),
+                    Positioned(
+                      left: 153.5,
+                      top: 23,
+                      child: Container(
+                        width: 55.w,
+                        height: 55.h,
+                        decoration: BoxDecoration(
+                            color: AppColor.lightBlueColor,
+                            borderRadius: BorderRadius.circular(90.r),
+                            border: Border.all(
+                                color: AppColor.blueColor, width: 5)),
+                        child: Image(
+                          image: AssetImage(AssetsPathes.profileImage),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 215,
+                      top: 80,
+                      child: Container(
+                        width: 12.w,
+                        height: 12.h,
+                        decoration: BoxDecoration(
+                            color: AppColor.whiteColor,
+                            borderRadius: BorderRadius.circular(3.r),
+                            border: Border.all(
+                                width: 1, color: AppColor.greyColor)),
+                        child: Icon(
+                          Icons.edit,
+                          size: 10.sp,
+                          color: AppColor.headingColor,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 152,
+                      top: 100,
+                      child: Text(
+                        'Sunder',
+                        // '${driverProfileController.driver_name.value}',
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                          fontFamily: 'Inter-Regular',
+                          color: AppColor.whiteColor,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                        left: 240,
+                        top: 110,
+                        child: Container(
+                          width: 15.w,
+                          height: 15.h,
+                          decoration: BoxDecoration(
+                              color: AppColor.whiteColor,
+                              borderRadius: BorderRadius.circular(3.r),
+                              border: Border.all(
+                                  width: 1, color: AppColor.greyColor)),
+                          child: Center(
+                            child: Icon(
+                              Icons.edit,
+                              size: 10.sp,
+                              color: AppColor.headingColor,
+                            ),
+                          ),
+                        ))
+                  ],
                 ),
                 SizedBox(
                   height: 20.h,
@@ -99,14 +196,14 @@ class _AnalyticsState extends State<Analytics> {
                       child: Row(
                         children: [
                           Text(
-                            'Student Name: ',
+                            'Student Id: ',
                             style: TextStyle(
                                 color: AppColor.darkGreyColor,
                                 fontFamily: "Poppins-SemiBold",
                                 fontSize: 12.sp),
                           ),
                           Text(
-                            'Sunder ',
+                            'MITH1002',
                             style: TextStyle(
                                 color: AppColor.darkGreyColor,
                                 fontFamily: "Poppins-Regular",
@@ -136,14 +233,51 @@ class _AnalyticsState extends State<Analytics> {
                       child: Row(
                         children: [
                           Text(
-                            'Student Age: ',
+                            'Student School: ',
                             style: TextStyle(
                                 color: AppColor.darkGreyColor,
                                 fontFamily: "Poppins-SemiBold",
                                 fontSize: 12.sp),
                           ),
                           Text(
-                            '14',
+                            'Kamaraj Mat. Hr. Sec. School',
+                            style: TextStyle(
+                                color: AppColor.darkGreyColor,
+                                fontFamily: "Poppins-Regular",
+                                fontSize: 10.sp),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Container(
+                  width: 250.w,
+                  height: 40.h,
+                  decoration: BoxDecoration(
+                    color: AppColor.whiteColor,
+                    borderRadius: BorderRadius.circular(5.r),
+                    border:
+                        Border.all(width: 0.75.w, color: AppColor.greyColor),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8.0.w),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        children: [
+                          Text(
+                            'Coach Name: ',
+                            style: TextStyle(
+                                color: AppColor.darkGreyColor,
+                                fontFamily: "Poppins-SemiBold",
+                                fontSize: 12.sp),
+                          ),
+                          Text(
+                            'Dharmaprabu',
                             style: TextStyle(
                                 color: AppColor.darkGreyColor,
                                 fontFamily: "Poppins-Regular",
@@ -185,132 +319,6 @@ class _AnalyticsState extends State<Analytics> {
                                 color: AppColor.darkGreyColor,
                                 fontFamily: "Poppins-Regular",
                                 fontSize: 12.sp),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Container(
-                  width: 250.w,
-                  height: 60.h,
-                  decoration: BoxDecoration(
-                    color: AppColor.whiteColor,
-                    borderRadius: BorderRadius.circular(5.r),
-                    border:
-                    Border.all(width: 0.75.w, color: AppColor.greyColor),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 8.0.w, right: 8.w),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          Text('No. of Games Played ',
-                          style: TextStyle(
-                          color: AppColor.darkGreyColor,
-                          fontFamily: "Poppins-SemiBold",
-                          fontSize: 12.sp),
-                    ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                '3-3-3: 20',
-                                style: TextStyle(
-                                    color: AppColor.headingColor,
-                                    fontFamily: "Poppins-SemiBold",
-                                    fontSize: 12.sp),
-                              ),
-                              Spacer(),
-                              Text(
-                                '3-6-3: 15',
-                                style: TextStyle(
-                                    color: AppColor.headingColor,
-                                    fontFamily: "Poppins-Regular",
-                                    fontSize: 12.sp),
-                              ),
-                             Spacer(),
-                              Text(
-                                'Cycle: 10',
-                                style: TextStyle(
-                                    color: AppColor.headingColor,
-                                    fontFamily: "Poppins-Regular",
-                                    fontSize: 12.sp),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Container(
-                  width: 250.w,
-                  height: 60.h,
-                  decoration: BoxDecoration(
-                    color: AppColor.whiteColor,
-                    borderRadius: BorderRadius.circular(5.r),
-                    border:
-                    Border.all(width: 0.75.w, color: AppColor.greyColor),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 8.0.w, right: 8.w),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          Text('Best Records',
-                            style: TextStyle(
-                                color: AppColor.darkGreyColor,
-                                fontFamily: "Poppins-SemiBold",
-                                fontSize: 12.sp),
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                '3-3-3: 00:10',
-                                style: TextStyle(
-                                    color: AppColor.headingColor,
-                                    fontFamily: "Poppins-SemiBold",
-                                    fontSize: 12.sp),
-                              ),
-                              Spacer(),
-                              Text(
-                                '3-6-3: 00:08',
-                                style: TextStyle(
-                                    color: AppColor.headingColor,
-                                    fontFamily: "Poppins-Regular",
-                                    fontSize: 12.sp),
-                              ),
-                              Spacer(),
-                              Text(
-                                'Cycle: 00:20',
-                                style: TextStyle(
-                                    color: AppColor.headingColor,
-                                    fontFamily: "Poppins-Regular",
-                                    fontSize: 12.sp),
-                              ),
-                            ],
                           ),
                         ],
                       ),

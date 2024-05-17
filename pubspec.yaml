@@ -46,6 +46,7 @@ dependencies:
   animated_splash_screen: ^1.3.0
   fl_animated_linechart: ^1.1.9
   easy_pie_chart: ^1.0.0
+  fl_chart: ^0.67.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -73,6 +74,9 @@ flutter:
     - assets/images/
     - assets/images/mithraa_sports_logo.png
     - assets/images/mithraheaderlogo.png
+    - assets/images/img.png
+    - assets/images/img1.png
+    - assets/images/slidebarlogo.png
     - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
